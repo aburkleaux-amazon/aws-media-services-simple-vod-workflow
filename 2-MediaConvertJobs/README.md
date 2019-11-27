@@ -118,16 +118,22 @@ At this point, we will test our job settings with just the MP4 output to make su
 
 12. Scroll down to the **Encoding settings** panel and enter `640` and `360` in the **Resolution (w x h)** box
 13. Scroll down **Rate Control Mode** and set it to **QVBR**. Set **Max bitrate(bits/s)** box to `1000000`.
-14. Select Output 2 from the Output Groups section Jobs panel to go to the Output settings form for Output 2.
-15. Enter `_540` in the **Name modifier** box
-16. Enter `$dt$` in the **Segment modifier** box.
-17. Scroll down to the **Encoding settings** panel and enter `960` and `540` in the **Resolution (w x h)** box
-18. Scroll down **Rate Control Mode** and set it to **QVBR**. Set **Max bitrate(bits/s)** box to `2000000`.
-19. Select Output 3 from the Output Groups section Jobs panel to go to the Output settings form for Output 3.
-20. Enter `_720` in the **Name modifier** box
-21. Enter `$dt$` in the **Segment modifier** box.
-22. Scroll down to the **Encoding settings** panel and enter `1280` and `720` in the **Resolution (w x h)** box
-23. Scroll down **Rate Control Mode** and set it to **QVBR**. Set **Max bitrate(bits/s)** box to `3000000`.
+14. Scroll down to the bottom of the form and enable the **Timecode burn-in** option
+15. Enter `360-` in the prefix box and leave the rest of the options as the default.
+15. Select Output 2 from the Output Groups section Jobs panel to go to the Output settings form for Output 2.
+16. Enter `_540` in the **Name modifier** box
+17. Enter `$dt$` in the **Segment modifier** box.
+18. Scroll down to the **Encoding settings** panel and enter `960` and `540` in the **Resolution (w x h)** box
+19. Scroll down **Rate Control Mode** and set it to **QVBR**. Set **Max bitrate(bits/s)** box to `2000000`.
+20. 14. Scroll down to the bottom of the form and enable the **Timecode burn-in** option
+15. Enter `540-` in the prefix box and leave the rest of the options as the default.
+21. Select Output 3 from the Output Groups section Jobs panel to go to the Output settings form for Output 3.
+22. Enter `_720` in the **Name modifier** box
+23. Enter `$dt$` in the **Segment modifier** box.
+24. Scroll down to the **Encoding settings** panel and enter `1280` and `720` in the **Resolution (w x h)** box
+25. Scroll down **Rate Control Mode** and set it to **QVBR**. Set **Max bitrate(bits/s)** box to `3000000`.
+26. 14. Scroll down to the bottom of the form and enable the **Timecode burn-in** option
+15. Enter `720-` in the prefix box and leave the rest of the options as the default.
 
 
 
@@ -182,6 +188,18 @@ To play the videos, you will use the S3 HTTPS resource **Link** on the videos S3
 
 Note that the `VANLIFE` clip only has audio in the first 45 seconds of the file. 
 
+#### HLS
+
+The HLS manifest file is located in your ouput s3 bucket in the object: s3://YOUR-MediaBucket/assets/VANLIFE/HLS/VANLIFE.m3u8
+
+You can play the HLS using:
+* Safari browser by clicking on the **Link** for the object.
+* **JW Player Stream Tester** - by copying the link for the object and inputing it to the player.  https://developer.jwplayer.com/tools/stream-tester/ 
+
+The HLS player switches between the threee diffferent resolutions of video you created in your HLS stack based on the performance of the stream.  This ensures a smooth playback experience that avoids buffering.  Instead, the quality of the video is downgraded to adapt to the resource constraints.  
+
+Use the settings (gear icon) in JW Player to force switching between the different HLS levels.  You should see the prefix on the timecode change when the levels switch.
+
 #### MP4s
 
 The MP4 output is located in your ouput s3 bucket in the object: s3://YOUR-MediaBucket/assets/VANLIFE/MP4/VANLIFE.mp4
@@ -190,13 +208,6 @@ You can play the MP4 using:
 * Chrome by clicking on the **Link** for the object.
 * **JW Player Stream Tester** by copying the link for the object and inputing it to the player. https://developer.jwplayer.com/tools/stream-tester/ 
 
-#### HLS
-
-The HLS manifest file is located in your ouput s3 bucket in the object: s3://YOUR-MediaBucket/assets/VANLIFE/HLS/VANLIFE.m3u8
-
-You can play the HLS using:
-* Safari browser by clicking on the **Link** for the object.
-* **JW Player Stream Tester** - by copying the link for the object and inputing it to the player.  https://developer.jwplayer.com/tools/stream-tester/ 
 
 #### Thumbnails
 
@@ -217,4 +228,4 @@ Next module: [**Modifying AWS Elemental MediaConvert Inputs**](../3-Inputs/READM
 
 You may also be interested in the following activities:
 
-* [Testing HLS Video](../9-TestingHLS/README.md)
+* [Testing HLS Video](../10-TestingHLS/README.md)
